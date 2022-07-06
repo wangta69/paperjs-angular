@@ -103,3 +103,9 @@ const circle3 = new Path.Circle()
 this.layer1.addChild(this.circle2);
 circle2는 layer 1로 이동된다.
 ```
+위와 같이 되는 경우는 layer 가 생성될때 생성되는 layer가 activate 되기 때문이다.
+만약 프로그램적으로 특정 layer에 신규 item 에 추가되기를 의도할 경우는 activate 를 사용하면 된다.
+```
+layer1.activate();
+```
+이렇게 처리하면 이후 추가되는 item은 layer1에 들어간다.

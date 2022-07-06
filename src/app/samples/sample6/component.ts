@@ -1,6 +1,6 @@
 // https://stackabuse.com/introduction-to-phaser-3-building-breakout/
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { Project, Path, Point, Raster, Layer, Color} from 'paper';
+import { Project, Path, Point, Raster, Layer, Color, PointText} from 'paper';
 @Component({
   selector: 'app-root',
   template:`<canvas #canvas1></canvas>`,
@@ -24,9 +24,34 @@ export class Sample6Component implements OnInit {
     }
 
     private draw() {
+
+
+
         const project: any = new Project(this.canvas1.nativeElement);
+
+
+
         const layer1 = new Layer();
         layer1.name = 'firstLayer';
+
+        layer1.onMouseDrag = (e: any) => {
+            layer1.position = layer1.position.add(e.delta);
+        };
+
+
+
+
+        const ball1: any = new Path.Circle(new Point(100, 100), 30);
+        ball1.fillColor = 'red';
+        ball1.onMouseUp = function() {
+        };
+
+        // layer2.addChild(ball1);
+        // layer2.visible = false;
+
+        const ball2: any = new Path.Circle(new Point(100, 200), 30);
+        ball2.fillColor = 'blue';
+        // layer1.addChild(ball2);
 
         const layer2: any = new Layer();
         layer2.name = 'secondLayer';
@@ -36,75 +61,65 @@ export class Sample6Component implements OnInit {
             strokeColor: new Color('red')
         };
 
-        console.log('layer2 >>>> ', layer2);
-
-
-        const raster1 = new Raster('/assets/images/fruit2-m.png');
-        raster1.onLoad = function(){
-            raster1.position = project.view.center;
-            raster1.size = project.view.size;
-    	};
-
-        layer1.addChild(raster1);
-        layer1.visible = false;
-
-
-        const ball1: any = new Path.Circle(new Point(this.getReal(80), this.getReal(50)), this.getReal(30));
-        ball1.fillColor = 'red';
-        ball1.onMouseUp = function() {
-        	alert("ball 1!");
+        layer2.onMouseDrag = (e: any) => {
+            layer2.position = layer2.position.add(e.delta);
         };
 
-        // layer2.addChild(ball1);
-        // layer2.visible = false;
+        console.log('layer2 >>>> ', layer2);
 
-        const ball2: any = new Path.Circle(new Point(this.getReal(160), this.getReal(100)), this.getReal(60));
-        ball2.fillColor = 'blue';
-        layer1.addChild(ball2);
-
-        const ball3: any = new Path.Circle(new Point(this.getReal(400), this.getReal(60)), this.getReal(40));
+        const ball3: any = new Path.Circle(new Point(200, 100), 30);
         ball3.strokeColor = 'yellow';
         ball3.strokeWidth = 20;
         // ball3.fillColor = 'yellow';
 
-        const ball4: any = new Path.Circle(new Point(this.getReal(800), this.getReal(600)), this.getReal(25));
+        const ball4: any = new Path.Circle(new Point(200, 200), 30);
         ball4.fillColor = 'green';
+        ball4.selected = true;
         console.log(project.view);
-        project.view.onResize = function(event: any) {
-            console.log(event);
-        //     project.view.setViewSize(new Size(this.getReal(800), this.getReal(600)));
-        //     const scale = this.getScale();
-    	// 	ball1.position = new Point(this.getReal(80), this.getReal(50));
-        //     ball1.scale(scale);
-        //
-        //     ball2.position = new Point(this.getReal(160), this.getReal(100));
-        //     ball2.scale(scale);
-        //
-        //     ball3.position = new Point(this.getReal(400), this.getReal(60));
-        //     ball3.scale(scale);
-        //
-        //     ball4.position = new Point(this.getReal(800), this.getReal(600));
-        //     ball4.scale(scale);
-        //
-        //     raster1.scale(scale);
-        //     raster1.position = project.view.center;
+
+        const layer3: any = new Layer();
+        layer3.name = 'controlerLayer';
+        const text1: any = new PointText(new Point(100, 30));
+        text1.content='hide layer 1';
+
+        text1.onMouseDown = () => {
+            if (text1.content === 'hide layer 1') {
+                text1.content='show layer 1';
+                layer1.visible = false;
+            } else {
+                text1.content='hide layer 1';
+                layer1.visible = true;
+            }
         };
+
+        const text2: any = new PointText(new Point(300, 30));
+        text2.content='move yellow layer 1';
+
+        text2.onMouseDown = () => {
+            if (text2.content === 'move yellow layer 1') {
+                text2.content='move yellow layer 2';
+                layer1.addChild(ball3);
+            } else {
+                text2.content='move yellow layer 1';
+                layer2.addChild(ball3);
+            }
+        };
+
+        // 레이어를 통해 레이어에 있는 모든 item의 속성을 한번에 변경할 수 있다.
+        layer3.style = { // 이곳에 있어야 레이어에 있는 모든 item들에 적용된다. 만약 text1 아래에 있으면 text1 만 적용된다.
+            fillColor: 'blue',
+            fontSize: 20
+        };
+
+        // layer2.activate();
+        //
+        //
+        layer2.selected = true;
+        layer1.selected = false;
 
     }
 
-    private getReal(val: number) {
-        console.log('getReal');
-       const actual_ratio = this.canvas1.nativeElement.offsetWidth / this.canvasSize.width;
-       console.log('val: ' + val + ', actual_ratio:' + actual_ratio);
-       return val * actual_ratio;
-   }
 
-   private getScale() {
-
-       // const scale = $('#canvas').innerWidth()/last_width;
-       // last_width = $('#canvas').innerWidth();
-       // return scale;
-   }
 
 
 }

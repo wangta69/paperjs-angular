@@ -9,6 +9,7 @@ import { Sample5Component } from './samples/sample5/component';
 import { Sample6Component } from './samples/sample6/component';
 import { Sample7Component } from './samples/sample7/component';
 import { Sample8Component } from './samples/sample8/component';
+import { Sample9Component } from './samples/sample9/component';
 
 const routes: Routes = [
     { path: 'samples/sample1', component: Sample1Component },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'samples/sample6', component: Sample6Component },
     { path: 'samples/sample7', component: Sample7Component },
     { path: 'samples/sample8', component: Sample8Component },
+    { path: 'samples/sample9', component: Sample9Component },
 ];
 
 @NgModule({

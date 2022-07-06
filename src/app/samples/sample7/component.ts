@@ -40,6 +40,8 @@ export class Sample7Component implements OnInit {
             text.style.fillColor = 'red';
         };
         ball1.onMouseDrag = (e: any) => {
+            // ball2.sendToBack();
+            ball1.bringToFront();
             ball1.position = ball1.position.add(e.delta);
         };
 
@@ -58,6 +60,8 @@ export class Sample7Component implements OnInit {
             text.style.fillColor = 'blue';
         };
         ball2.onMouseDrag = (e: any) => {
+            // ball1.sendToBack();
+            ball2.bringToFront();
             ball2.position = ball2.position.add(e.delta);
         };
 
