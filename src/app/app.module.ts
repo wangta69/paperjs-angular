@@ -13,6 +13,8 @@ import { Sample6Component } from './samples/sample6/component';
 import { Sample7Component } from './samples/sample7/component';
 import { Sample8Component } from './samples/sample8/component';
 import { Sample9Component } from './samples/sample9/component';
+import { Sample10Component } from './samples/sample10/component';
+import { Sample11Component } from './samples/sample11/component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { Sample9Component } from './samples/sample9/component';
     Sample6Component,
     Sample7Component,
     Sample8Component,
-    Sample9Component
+    Sample9Component,
+    Sample10Component,
+    Sample11Component
   ],
   imports: [
     BrowserModule,
