@@ -29,7 +29,7 @@ export class Sample9Component implements OnInit {
         this.project = new Project(this.canvas1.nativeElement);
 
         const awesometext: any = new PointText(new Point(100, 100));
-        awesometext.content='awesome';
+        awesometext.content='Wheel Mouse For Zoom';
 
         awesometext.style = {
             fillColor: 'blue',
@@ -67,8 +67,4 @@ export class Sample9Component implements OnInit {
         // this.project.view.center.x = e.offsetX;
         // this.project.view.center.y = e.offsetY;
     }
-
-
-
-
 }

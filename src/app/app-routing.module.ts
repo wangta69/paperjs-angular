@@ -12,6 +12,7 @@ import { Sample8Component } from './samples/sample8/component';
 import { Sample9Component } from './samples/sample9/component';
 import { Sample10Component } from './samples/sample10/component';
 import { Sample11Component } from './samples/sample11/component';
+import { Sample12Component } from './samples/sample12/component';
 
 const routes: Routes = [
     { path: 'samples/sample1', component: Sample1Component },
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'samples/sample9', component: Sample9Component },
     { path: 'samples/sample10', component: Sample10Component },
     { path: 'samples/sample11', component: Sample11Component },
+    { path: 'samples/sample12', component: Sample12Component },
 ];
 
 @NgModule({
